@@ -1,0 +1,128 @@
+¿Qué es un tag en Git?
+
+Un tag en Git es una forma de marcar o etiquetar un punto específico en la historia de tu proyecto, usualmente un commit importante. Imagina que tienes una línea de tiempo con varios cambios (commits), y quieres poner una marca para recordar un momento relevante, por ejemplo, cuando lanzaste la versión 1.0.0 de tu aplicación. Ese marcador es un tag.
+
+Los tags son útiles para identificar versiones de tu software, como versiones de lanzamiento, correcciones importantes, o hitos en el desarrollo. No cambian la historia ni el código, solo funcionan como "etiquetas" que apuntan a un commit específico.
+
+Ejemplo sencillo de tags
+
+Supongamos que tu proyecto tiene estos 4 commits en orden cronológico:
+
+Commit 1: Inicio del proyecto
+
+Commit 2: Unión de trabajos realizados por diferentes personas
+
+Commit 3: Nuevas funcionalidades añadidas
+
+Commit 4: Creación del ejecutable (archivo listo para usar)
+
+Para indicar que el commit 4 es la versión 1.0.0 de tu aplicación, creas un tag llamado v1.0.0 que apunta a ese commit. Así, cuando quieres regresar o referirte a esa versión, solo miras el tag.
+
+Comandos básicos para trabajar con tags
+
+Crear un tag ligero:
+git tag v1.0.0
+
+Crear un tag en un commit específico:
+git tag v1.0.0 <hash_commit>
+
+Ver todos los tags:
+git tag
+
+Compartir los tags con el repositorio remoto:
+git push origin --tags
+
+Buenas prácticas con tags
+
+Usa nombres claros y consistentes, por ejemplo, siguiendo SemVer (Versionado Semántico) con formatos como v1.0.0, v2.1.3, etc.
+
+Agrega un mensaje al tag para describir la versión (tags anotados). Esto es especialmente útil para documentar qué cambios importantes incluye esa versión:
+git tag -a v1.0.0 -m "Versión inicial estable con ejecutable"
+
+Taguea siempre versiones estables o hitos importantes, no cada pequeño cambio.
+
+Sincroniza tus tags con el repositorio remoto para que todo el equipo pueda acceder a ellos.
+
+Algunas compañías usan nombres especiales para tags, como Android que usa nombres de dulces para sus releases (“Pie”, “Oreo”), pero esto es más una convención interna.
+lo ideal es enumerar el versionamiento para ver en que punto del proyecto se encontraba la version 1.0.0 o 1.0.1 o 2.0.0 y asi sucesivamente
+
+
+vamos a ver un pequeña practica con un ejemplo 
+supongamos que tengo estos commits usando el git log --oneline
+git log --oneline
+62c8a1 (HEAD -> master) Agregando el gitignore
+ac0d37 Borramos la historia de batman
+b4c748 Cambiamos el nombre de la historia de superman
+d877f0 Borrando archivo salvar mundo
+
+ahora si quisiéramos agregar un nuevo tag al ultimo commit que tenemos seria ejecutar el siguiente comando 
+git tag <nombre_del_tag>
+
+git tag super-release
+
+/*y si en dado caso quiesieramos listar los tag que tiene nuestro repostiorio ejecutarmos el siguiente comando */
+git tag
+
+/*o por ejemplo quisiera borrar ese tag ejecuto el siguiente comando */
+git tag -d v1.0.0
+/*esto devolverá un mensaje asi indicando que el tag fue eliminado*/
+Deleted tag 'v1.0.0' (was 62c8a1)
+
+/*Nota importante el versionamiento semántico es lo que se acostrumbra trabajar con los tags */
+
+
+/*ahora vamos a crear nuestra primera version de producction un punto importante que cuando un tag tiene el nombre de un release tag quiere decir que es una version en la cual la aplicación esta a un punto super maduro o lo suficiente maduro para ser considerada que ya esta lista para ponerla en producción esa version
+vamos a hacer lo siguiente 
+(hay que hacerlo como si el tag fuera una version anotada -a viene de "Annotated" y es importante agregar el -m seguido de las comillas dobles para describir el tag porque si no agregamos el -m entrará a un modo de edición y es mas rápido y sencillo agregando el -m y hacerlo desde la terminal)*/
+git tag -a v1.0.0 -m "Version 1.0.0 lista"
+
+/*al hacer git log --oneline ya seremos capaces de ver el tag junto con el commit al que se lo agregamos*/
+git log --oneline
+62c8a1 (HEAD -> master, tag: v1.0.0) Agregando el gitignore
+ac0d37 Borramos la historia de batman
+b4c748 Cambiamos el nombre de la historia de superman
+d877f0 Borrando archivo salvar mundo
+
+/*NOTA MUY IMPORTANTE Como puedo interpretar esta nomenclatura v1.0.0, es decir como puedo ver esto y entender lo que quiere decir? bueno
+v1.0.0 primero lo primero la "v" representa la palabra version
+que es el primer numero seguido de la version ""v significa que es una version mayor, significa que hubieron cambios importantes en nuestra aplicación y que pueden haber breaking changes o cambios que rompan el código anterior, en pocas palabras estas es una version mayor, dependerá mucho en lo que nosotros queramos interpretar en nuestro caso es el "1" como es nuestro ejemplo v1.0.0
+el segundo numero usualmente se considera cuando ustedes añaden cierta funcionalidad a nuestra librería, paquete, etc. que estemos creando pero que no es considerado una version mayor es decir agregamos una nueva funcionalidad agregamos algo importante pero que no es un cambio tan significativo para justificar ponerlo en el primer parámetro, en neustro caso es el 0 como es nuestro ejemplo v1.0.0
+el tercer numero significa algún tipo de Bob Fix, es decir, si nos encontramos en esta version de v1.0 encontramos un problema que tenia que se resuelto, esos cambios haacer que creciera un poco este numero,*/
+/*comentario importantes: no quiere decir que esta numero v1 no pueda llegar a ser v10 nosotros podemos llegar al numero que queramos, el ultimo numero usualmente es para correccion de errores el sistema no tenia una algo funcionando y ahora funciona, estábamos imprimiendo en consola y se nos olvidó quitarlo y ahora lo quitamos, en esos casos particulares si cambia el ultimo numero*/
+/*usualmente se le puede poner mas cosas como alfa 1, alfa 2, alfa 3 entre otras cosas*/
+
+/*ahora siguiendo con el tema de los tag, se puede decir que al hacer un git tag solo se va a agregar en el punto en donde nosotros nos encontramos por lo tanto es no agrega un tag a un commit anterior solo al commit en el que nos encontramos */
+/*para agregar un tag a un commit anterior por ejemplo hacer que un commit se la version v.0.1.0 como decir que es la version inicial, primero hacemos git log --oneline para ver los commit*/
+git log --oneline
+62c8a1 (HEAD -> master, tag: v1.0.0) Agregando el gitignore
+ac0d37 Borramos la historia de batman
+b4c748 Cambiamos el nombre de la historia de superman
+d877f0 Borrando archivo salvar mundo
+c9ee15 Renombrando archivo a salvar-mundo
+
+/*y supongamos que el commit que quiero agregarle un tag es el b4c748 Cambiamos el nombre de la historia de superman, ahora vamos hacer copiando el hash del commit al que queremos ponerle el tag y ejecutamos el git tag -a v0.1.0 y luego el hash del commit que en nuestro caso es este b4c748 y luego el -m "" para agregarle un mensaje a ese tag, entonces el comando quedaría asi:*/
+git tag -a v0.1.0 b4c748 -m "Version alpha de nuestra app"
+
+/*pero como hago para ver el mensaje que le agregué al tag o si quiero ver mas información del commit al cual le agregué ese tag lo hacemos con la siguiente estructura git show <nombre_del_tag> asi quedaría el comando en nuestro caso?
+git show v0.1.0
+
+/*este mostrará tanto cuando se agregó el tag, quien lo hizo, el mensaje del tag, además como el tag hace referencia a un commit en especifico tambien se muestra la informacion del commit */
+git show v0.1.0
+tag v0.1.0
+Tagger: RodrigoGuzmanDiaz <rodrigodiaz5225@gmail.com>
+Date:   Sun Nov 16 10:19:20 2025 -0600
+
+Version alpha de nuestra app
+
+commit b4c748c4dd3447a9801713c9faa4a1a04d126d62 (tag: v0.1.0)
+Author: Strider <fernando.herrera85@gmail.com>
+Date:   Mon Jun 19 16:21:26 2017 -0600
+
+    Cambiamos el nombre de la historia de superman
+
+diff --git a/historia/superman.historia.md b/historia/superman.md
+similarity index 100%
+rename from historia/superman.historia.md
+rename to historia/superman.md
+
+/*recordemos que los tag son super utiles para marcar puntos importante de nuestra aplicación, hicimos un nuevo release, es decir ya esta es una version considerada de producción en la version 1 de mi app, la version 1,2,3,4 o esto es una version importante que a mi me va a interesar que otra persona lo pueda descargar rápidamente o puede obtener todo el código como se encuentra exactamente en ese punto del tiempo sin tener que memorizarse cual es el hash*/
