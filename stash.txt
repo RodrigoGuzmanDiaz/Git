@@ -1,35 +1,35 @@
-ahora vamos a ver stash
-el stash es usualmente utilizado para el cuando necesito hacer salir del lugar en donde me encuentro para continuar trabajando en otra rama el punto es 
+/*ahora vamos a ver stash
+el stash es usualmente utilizado para el cuando necesito hacer salir del lugar en donde me encuentro para continuar trabajando en otra rama el punto es */
 
-porgamos un ejemplo por ejemplo estamos trabajando en una funiconalidad y en dado caso un compañero de trabajo nos pide ayuda ya sea porque se cayo un servicio, hay una invulnerabilidad que necesita ser arreglada, etc. el punto es que tenemos cambios que estan a media por lo tanto no es viable hacer commit porque recordemos que solo debemos hacer cambios cuando tengas cambios importante para la aplicacion o avances significativos. 
+/*porgamos un ejemplo por ejemplo estamos trabajando en una funiconalidad y en dado caso un compañero de trabajo nos pide ayuda ya sea porque se cayo un servicio, hay una invulnerabilidad que necesita ser arreglada, etc. el punto es que tenemos cambios que estan a media por lo tanto no es viable hacer commit porque recordemos que solo debemos hacer cambios cuando tengas cambios importante para la aplicacion o avances significativos. 
 para esto existe stash 
-stash es un area entonces se guarda los cambios no han sido guardados en commit 
+stash es un area entonces se guarda los cambios no han sido guardados en commit*/ 
 
-recordemos que no se nos permite cambiar de rama si cambios sin guardar en este caso usamos stash 
+/*recordemos que no se nos permite cambiar de rama si cambios sin guardar en este caso usamos stash */
 
-por ejemplo 
-Trabajando en la rama "funcionalidad-pago"
-en esta rama tengo cambios a medias que no ameritan hacerles commit por lo tanto lo ideal es usar stash
+/*por ejemplo*/ 
+/*Trabajando en la rama "funcionalidad-pago"
+en esta rama tengo cambios a medias que no ameritan hacerles commit por lo tanto lo ideal es usar stash*/
 para hacer stash se usa el siguiente comando:
 git stash
 
-ahora 
-marelin@marelin-HP-240-G7-Notebook-PC:~/Documentos/curso-git/Actividades-curso-git/07-demo-stash$ git stash
+*/ahora */
+git stash
 Directorio de trabajo y estado de índice WIP on funcionalidad-pago: 5440fe5 Resolviendo conflictos guardados
 
-ahora vemos que los cambios que teniamos ya no estan esto es porque se guardaron en el area de stash
+/*ahora vemos que los cambios que teniamos ya no estan esto es porque se guardaron en el area de stash*/
 
-ahora si podemos cambiar de rama para prestar nuesra atencion en otra cosa
+/*ahora si podemos cambiar de rama para prestar nuesra atencion en otra cosa*/
 git switch otra-rama
 
-"despues de trabajar en el otro lugar ya que los errores se hayan resuelto o que se haya solucionado ya podemos regresar a nuestra rama y continuar trabajando"
+/*"despues de trabajar en el otro lugar ya que los errores se hayan resuelto o que se haya solucionado ya podemos regresar a nuestra rama y continuar trabajando"*/
 
 git switch funcionalidad-pago
 
-en este punto ya podemos continuar trabajando en lo que estabamos haciendo antes
+/*en este punto ya podemos continuar trabajando en lo que estabamos haciendo antes*/
 
-¿Pero como hago para tener mis cambios anteriores ?
-el comando para hacer esto es:
+/*¿Pero como hago para tener mis cambios anteriores ?
+el comando para hacer esto es:*/
 git stash pop
 
 En la rama funcionalidad-pago
@@ -41,16 +41,16 @@ Cambios no rastreados para el commit:
 sin cambios agregados al commit (usa "git add" y/o "git commit -a")
 Descartado refs/stash@{0} (08878c1a32a53b854e35de193df80ce9fcd612dd)
 
-de esta forma los cambios que se quedaron en el area de stash vuelven
+/*de esta forma los cambios que se quedaron en el area de stash vuelven*/
 
 
 ---pro tip---
-en dado caso es posible que se presente el caso de que se nos olvida que tenemos algo en stash es posible verificarlo antes que cometamos un error y es muy recomendable que usemos esto si no estamos seguron si hay algo en stash o no
-usando el siguiente comando se pueden ver las referencia a stash que tenemos
+/*en dado caso es posible que se presente el caso de que se nos olvida que tenemos algo en stash es posible verificarlo antes que cometamos un error y es muy recomendable que usemos esto si no estamos seguron si hay algo en stash o no*/
+/*usando el siguiente comando se pueden ver las referencia a stash que tenemos*/
 git stash list
 stash@{0}: WIP on funcionalidad-pago: 5440fe5 Resolviendo conflictos
 
-en el caso de usar stach tambien podemos almacenar multiples stash PERO LO RECOMENDABLE ES USAR SOLAMENTE UN STASH ya que si trabajamos con mas de uno esto puede generar conflictos
+/*en el caso de usar stach tambien podemos almacenar multiples stash PERO LO RECOMENDABLE ES USAR SOLAMENTE UN STASH ya que si trabajamos con mas de uno esto puede generar conflictos*/
 
 ----Advertencias----
 esto solo funciona con ARCHIVOS MODIFICADOS esto NO FUNCIONA CON ARCHIVO NUEVOS 
@@ -72,3 +72,59 @@ git stash --all
 
 Recuperar cambios:
 git stash pop
+
+----------------conflictos------------
+
+*/por ejemplo supongamos que tenemos este archivo .md*/
+con el siguietne contenido
+# Motivo
+
+Este repositorio sirve para probar cosas
+
+*/y agregamos el siguiente contenido*/
+# Motivo para el cambio
+
+Este repositorio sirve para probar cosas
+
+agregando nuevos cambios que pueden ser utiles para despuesy
+
+*/ usamos stash*/
+git stash
+
+
+/*ahora vamos a simular que en dado caso se nos olvido que teniamos algo en stash y continuamos trabajando sin saber que habia algo en esa area
+ahora digamos que estoy trabajando normal y que ahora tengo estos cambios*/
+
+# Motivo para salvar el mundo
+
+Este repositorio sirve para probar cosas
+
+y aqui esta el motivo para poder salvar a la humanidad
+
+/*ahora vamos a hacerle commit a los cambios*/
+git commit -am "Readme.md actuzliadao con nuevos motivos"
+
+/*ahora vamos a hacer git stash para general el conflicto simulando que se nos olvido que teniamos contenido en stash y lo que pasaria y contenido puede sobreescribir lo que tenemos ahora*/
+git stash pop
+
+/*ahora se nos presenta este caso debido a que tenemos contenido que se superpone al anterior*/
+<<<<<<< Updated upstream
+# Motivo para salvar el mundo
+
+Este repositorio sirve para probar cosas
+
+y aqui esta el motivo para poder salvar a la humanidad
+=======
+# Motivo para el cambio
+
+Este repositorio sirve para probar cosas
+
+agregando nuevos cambios que pueden ser utiles para despues
+>>>>>>> Stashed changes
+
+
+/*ahora podemos resolverlos manualmente o usando el merge editor el puento es resolver el conflicto y despues hacemos commit*/
+git commit -am "Se confirma la version corregida del Readme.md"
+
+
+/*asi es como se puede lidiar con los confiltos de stash que se pueden presentar en cualquier momento*/
