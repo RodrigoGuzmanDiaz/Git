@@ -122,9 +122,170 @@ Este repositorio sirve para probar cosas
 agregando nuevos cambios que pueden ser utiles para despues
 >>>>>>> Stashed changes
 
-
+S
 /*ahora podemos resolverlos manualmente o usando el merge editor el puento es resolver el conflicto y despues hacemos commit*/
 git commit -am "Se confirma la version corregida del Readme.md"
 
 
 /*asi es como se puede lidiar con los confiltos de stash que se pueden presentar en cualquier momento*/
+
+-----STASH AVANZADO----
+GIT STASH CLEAR
+ahora vamos a ver la seccion avanzada de git stash
+
+¿Que hago si tengo algo en stash y quiero eliminarlos porque ya no me sirve?
+/*en este caso vamoa a hacer git stash list*/
+git stash list
+stash@{0}: WIP on otra-rama: 5440fe5 Resolviendo conflictos
+
+/*ahora vemos que tenemos contenido en stash que no nos interesa por ejemplo ¿Como hacemos para descartar o eliminar esos casmbios que no me interesa tener?*/
+/*para eso usamos git stash clear esto para aliminar lo que tenemos en stash, en caso que no lo necesitemos*/
+git stash clear
+
+/*ahora cuando volvamos a hacer git stash list ya no aparecerá contenido en stash*/
+/*OJO: esto no significa que el contenido se haya perdido se puede recuperar el contenido si usamos git reflog PORFAVOR AGREGAR UN EJEMPLO*/
+
+
+GIT STASH APPLY
+/*ahora vamos a generar varios stash para eso vamos a modificar el archivo 3 veces y por cada cambio lo pondremos en stash*/
+archivo original
+# Villanos
+
+1. Lex Luthor
+2. Joker
+3. Flash Reverso
+4. Doomsday
+
+
+1er cambio
+# Villanos
+
+1. Lex Luthor
+2. Joker
+3. Flash Reverso
+4. Doomsday
+5. Gorilla Grok
+
+/*gurdamos los cambio y luego git stash*/
+
+2do cambio
+
+# Villanos
+
+1. Lex Luthor
+2. Joker
+3. Flash Reverso
+4. Doomsday
+5. Flash Reverso
+
+/*gurdamos los cambio y luego git stash*/
+
+3er cambio
+
+# Villanos
+
+1. Lex Luthor
+2. Joker
+3. Flash Reverso
+4. Doomsday
+5. DeadShot
+
+/*gurdamos los cambio y luego git stash*/
+
+4to cambio
+
+# Villanos
+
+1. Lex Luthor
+2. Joker
+3. Flash Reverso
+4. Doomsday
+5. Harley Queen
+
+/*gurdamos los cambio y luego git stash*/
+
+/*Ahora usamos git stash list para ver cuantos stash tenemos*/
+git stash list
+stash@{0}: WIP on otra-rama: f033d1e Se confirma la version corregida del Readme.md
+stash@{1}: WIP on otra-rama: f033d1e Se confirma la version corregida del Readme.md
+stash@{2}: WIP on otra-rama: f033d1e Se confirma la version corregida del Readme.md
+stash@{3}: WIP on otra-rama: f033d1e Se confirma la version corregida del Readme.md
+
+/*recordemos que la hacer git stash pop solo toma el ultimo stash, pero ahora como hago para apclicar los cambios de un stash especifico, para eso usamos el siguiente comando, git stash apply stash@{<numero_del_stash_a_aplicar>}*/
+git stash apply stash@{2}
+
+# Villanos
+
+1. Lex Luthor
+2. Joker
+3. Flash Reverso
+4. Doomsday
+5. Flash Reverso 2
+
+/*vemos que los cambios ya se aplicaron los cambios de un stash especifico*/
+
+GIT STASH DROP
+/*¿Como hago para elimnar un stash especifico que no me sirva?, para eso se usa git stash drop stash@{<numero_del_stash_a_aplicar>}*/
+
+/*primero veamo cual stash queremos eliminar. con git stash list*/
+git stash list
+stash@{0}: WIP on otra-rama: f033d1e Se confirma la version corregida del Readme.md
+stash@{1}: WIP on otra-rama: f033d1e Se confirma la version corregida del Readme.md
+stash@{2}: WIP on otra-rama: f033d1e Se confirma la version corregida del Readme.md
+stash@{3}: WIP on otra-rama: f033d1e Se confirma la version corregida del Readme.md
+
+/*ahora usamos drop*/
+git stash drop stash@{2}
+Descartado stash@{2} (135e26a51d32bf2e055fd091ebb02b5b2e2eeec9)
+
+/*ahora vamos a ver otra vez con git stash list, y confirmamos que esta allí*/
+git stash list
+stash@{0}: WIP on otra-rama: f033d1e Se confirma la version corregida del Readme.md
+stash@{1}: WIP on otra-rama: f033d1e Se confirma la version corregida del Readme.md
+stash@{2}: WIP on otra-rama: f033d1e Se confirma la version corregida del Readme.md
+
+GIT STASH SAVE ""
+/*cuando hay varios stash es dificil identificar que cambios tiene uno u otro, es por eso que es recomendable usar git stash save "mensaje del stash para una mejor identificacion"*/
+
+# Villanos
+
+1. Lex Luthor
+2. Joker
+3. Flash Reverso
+4. Doomsday
+5. Flash Reverso 2
+
+git stash save "Se agrega a flash reverso 2 como villano"
+Directorio de trabajo y estado de índice On otra-rama: Se agrega a flash reverso 2 como villano guardados
+
+/*ahora podemos ver que el stash se guardó de manera diferente con un mensaje que lo identifica*/
+git stash list
+stash@{0}: On otra-rama: Se agrega a flash reverso 2 como villano
+stash@{1}: WIP on otra-rama: f033d1e Se confirma la version corregida del Readme.md
+stash@{2}: WIP on otra-rama: f033d1e Se confirma la version corregida del Readme.md
+stash@{3}: WIP on otra-rama: f033d1e Se confirma la version corregida del Readme.md
+
+GIT STASH SHOW 
+/*ahoras vamos a ver una forma de ver que cambios contienen cada stash, es una gran forma de darno una idea que lo que se agrego o aliminó lo que esta almacenando el stash*/
+/*el comando es git stash show stash@{numero_del_stash_a_analizar}*/
+git stash show stash@{2}
+ villanos.md | 1 +
+ 1 file changed, 1 insertion(+)
+
+GIT STASH LIST --STAT
+/*una forma de verlo es como es como una vista general de cada uno de los stash*/
+git stash list --stat
+stash@{0}: On otra-rama: Se agrega a flash reverso como villano
+
+ villanos.md | 1 +
+ 1 file changed, 1 insertion(+)
+stash@{1}: WIP on otra-rama: f033d1e Se confirma la version corregida del Readme.md
+
+ villanos.md | 1 +
+ 1 file changed, 1 insertion(+)
+stash@{2}: WIP on otra-rama: f033d1e Se confirma la version corregida del Readme.md
+
+
+--Consejo---
+/*es mejor NO usar mucho stash porque no es recomendable el stash es un espacio temporal donde alojamos nuestro codigo en caso de una emergencia o un imprevisto, pero no para usar para guardar codigo a largo plazo, veamoslo como un espacio temporal para guardar codigo*/
+
