@@ -1,0 +1,124 @@
+/*el git rabase es como ver como si fuera una forma se superponer contenido a una rama especifica por ejemeplo 
+al hacer un git lg (esto gracias a un alias)*/
+
+git lg
+* 158ba9e - (hace 9 años) Se agrego a la liga: Volcán Negro - Strider (HEAD -> master)
+* 300c014 - (hace 9 años) Misiones nuevas agregadas - Strider
+| * 8e755a3 - (hace 9 años) Actualizamos dos misiones completadas al momento - Strider (rama-misiones-completadas)
+| * cc55aaf - (hace 9 años) Agregamos el archivo de las misiones completadas - Strider
+|/  
+* acea380 - (hace 9 años) Actualización de las misiones - Strider
+* 31efae8 - (hace 9 años) Retomando el trabajo que guarde en el stash - Strider
+* 8239e26 - (hace 9 años) Cambios de emergencia en el README - Strider
+
+
+/*vemos en qen el commit con el hash de acea380 se abróo una rama y en esa rama se hizo un commit, pero en la rama principal tambien hay commits por lo tanto queremos superponer nuestro coommit esto quiere decir que seria como que los commits que se crearon en la rama secundaria estuvieran enfrente de todo*/
+es como si pusieramos los commits de la rama secundaria al final es decir que sean los ultimos commit
+
+/*para esto usamos el siguiente comando*/
+git rebase <rama_a_rebasar>
+
+
+/*pro ejemplo estamos en la rama segundaria y queremos hacerle git rebase a la rama principal*/
+git rebase master
+
+
+/*aqui esta el ejemplo completo*/
+git lg
+* 158ba9e - (hace 9 años) Se agrego a la liga: Volcán Negro - Strider (master)
+* 300c014 - (hace 9 años) Misiones nuevas agregadas - Strider
+| * 8e755a3 - (hace 9 años) Actualizamos dos misiones completadas al momento - Strider (HEAD -> rama-misiones-completadas)
+| * cc55aaf - (hace 9 años) Agregamos el archivo de las misiones completadas - Strider
+|/  
+* acea380 - (hace 9 años) Actualización de las misiones - Strider
+* 31efae8 - (hace 9 años) Retomando el trabajo que guarde en el stash - Strider
+* 8239e26 - (hace 9 años) Cambios de emergencia en el README - Strider
+* 7dd23f1 - (hace 9 años) Agregamos más misiones - Strider
+* 5b0c87f - (hace 9 años) Modificaciones en el README de emergencia - Strider
+*   5440fe5 - (hace 9 años) Resolviendo conflictos - Strider (tag: v1.0.0)
+|\  
+| * 52c9666 - (hace 9 años) Modificamos las misiones - Strider
+* | b936625 - (hace 9 años) Actualizamos las misiones MASTER - Strider
+|/  
+*   a4a9834 - (hace 9 años) Merge branch 'rama-villano' - Strider
+|\  
+| * b3e02bc - (hace 9 años) Agregamos a doomsday - Strider
+* | 4c24baa - (hace 9 años) Borre a los heroes que no son de DC - Strider
+|/  
+* ad66a33 - (hace 9 años) Agregamos al flash reverso - Strider
+* df6ed62 - (hace 9 años) Agregando villanos - Strider
+* 62c8a10 - (hace 9 años) Agregando el gitignore - Strider
+* ac0d374 - (hace 9 años) Borramos la historia de batman - Strider
+* b4c748c - (hace 9 años) Cambiamos el nombre de la historia de superman - Strider
+* d877f01 - (hace 9 años) Borrando archivo salvar mundo - Strider
+* c9ee153 - (hace 9 años) Renombrando archivo a salvar-mundo - Strider
+* fa3cd3a - (hace 9 años) Creando el archivo destruir el mundo - Strider
+* 4e809d4 - (hace 9 años) Agregamos a Linterna verde y a Robin - Strider
+* 345d7de - (hace 9 años) Editamos el readme.md - Strider (tag: v0.1.0)
+* 860c6c2 - (hace 9 años) Agregamos las historias de los heroes - Strider
+* bc1a1e5 - (hace 9 años) Agregamos las ciudades - Strider
+* 6b8f60d - (hace 9 años) Agregamos los heroes - Strider
+* da24862 - (hace 9 años) Agregamos las misiones - Strider
+* 88a423d - (hace 9 años) Se agrego el archivo readme - Strider
+marelin@marelin-HP-240-G7-Notebook-PC:~/Documentos/curso-git/Actividades-curso-git/08-demo-rebase$ git rebase master
+Rebase aplicado satisfactoriamente y actualizado refs/heads/rama-misiones-completadas.
+marelin@marelin-HP-240-G7-Notebook-PC:~/Documentos/curso-git/Actividades-curso-git/08-demo-rebase$ git lg
+* 7fc235b - (hace 9 años) Actualizamos dos misiones completadas al momento - Strider (HEAD -> rama-misiones-completadas)
+* 781f9e3 - (hace 9 años) Agregamos el archivo de las misiones completadas - Strider
+* 158ba9e - (hace 9 años) Se agrego a la liga: Volcán Negro - Strider (master)
+* 300c014 - (hace 9 años) Misiones nuevas agregadas - Strider
+* acea380 - (hace 9 años) Actualización de las misiones - Strider
+* 31efae8 - (hace 9 años) Retomando el trabajo que guarde en el stash - Strider
+* 8239e26 - (hace 9 años) Cambios de emergencia en el README - Strider
+* 7dd23f1 - (hace 9 años) Agregamos más misiones - Strider
+* 5b0c87f - (hace 9 años) Modificaciones en el README de emergencia - Strider
+*   5440fe5 - (hace 9 años) Resolviendo conflictos - Strider (tag: v1.0.0)
+|\  
+| * 52c9666 - (hace 9 años) Modificamos las misiones - Strider
+* | b936625 - (hace 9 años) Actualizamos las misiones MASTER - Strider
+|/  
+*   a4a9834 - (hace 9 años) Merge branch 'rama-villano' - Strider
+|\  
+| * b3e02bc - (hace 9 años) Agregamos a doomsday - Strider
+* | 4c24baa - (hace 9 años) Borre a los heroes que no son de DC - Strider
+|/  
+* ad66a33 - (hace 9 años) Agregamos al flash reverso - Strider
+* df6ed62 - (hace 9 años) Agregando villanos - Strider
+* 62c8a10 - (hace 9 años) Agregando el gitignore - Strider
+* ac0d374 - (hace 9 años) Borramos la historia de batman - Strider
+* b4c748c - (hace 9 años) Cambiamos el nombre de la historia de superman - Strider
+* d877f01 - (hace 9 años) Borrando archivo salvar mundo - Strider
+* c9ee153 - (hace 9 años) Renombrando archivo a salvar-mundo - Strider
+* fa3cd3a - (hace 9 años) Creando el archivo destruir el mundo - Strider
+* 4e809d4 - (hace 9 años) Agregamos a Linterna verde y a Robin - Strider
+* 345d7de - (hace 9 años) Editamos el readme.md - Strider (tag: v0.1.0)
+* 860c6c2 - (hace 9 años) Agregamos las historias de los heroes - Strider
+* bc1a1e5 - (hace 9 años) Agregamos las ciudades - Strider
+* 6b8f60d - (hace 9 años) Agregamos los heroes - Strider
+* da24862 - (hace 9 años) Agregamos las misiones - Strider
+* 88a423d - (hace 9 años) Se agrego el archivo readme - Strider
+
+
+aqui podemos ver que antes de hacer el rebase los commit de la rama principal estaban al final pero despues de hacer el rebase ahora los commits de la rama secundaria estan al final
+
+/*ahora podemos regresar a la rama principal y hacer un merge porque cuando estuvimos en la rama secundaria, no hubo problemas con el rebase podemos concluir que no habrá problema con usar el merge desde la rama principal*/
+git switch master
+Cambiado a rama 'master'
+
+git merge rama-misiones-completadas
+Actualizando 158ba9e..7fc235b
+Fast-forward
+ misiones-completadas.md | 4 ++++
+ 1 file changed, 4 insertions(+)
+ create mode 100644 misiones-completadas.md
+
+
+git branch -d rama-misiones-completadas
+
+
+/*ALGO CURIOSO ES QUE MUCHOS PROGRAMADORES PREFIEREN HACER MERGE Y LUEGO RESOLVER CONFLICTOS PERO ESTA UNA FORMA INTERESANTE QUE CONSEGUIR LO MISMO*/
+
+ACLARANDO ES MEJOR NO HACER ESTO PORQUE PUEDE GENERAR CONFLICTOS EN REPOSITORIOS COLABORATIVOS
+
+/*escribir en que casos es util y en que otros no o si hay mejores opciones para conseguir el mismo resultado QUIERO ESTO MUY PROFESIONAL*/
+/*MEJORAR LA EXPLICACION Y LA EJEMPLIFICACION*/
