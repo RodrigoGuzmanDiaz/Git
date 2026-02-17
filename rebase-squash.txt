@@ -1,0 +1,125 @@
+es posbile que mientras estemos trabajando se prensetne el caso que tenemos un commit seguido de otro pero la diferencia entre esos dos commits seria muy pequeña por ejemplo que editamos los mismo archivo con el proposito de arreglar un error o una preparar una funcionalidad es muy recomendable usar este tipo de comando usando el rebase interactivo
+
+git lg
+* a66fc5e - (hace 3 segundos) Se completa otra mision - rvguzman (HEAD -> master)
+* f9ce891 - (hace 2 minutos) se agrega otra mision completada - rvguzman
+* 7fc235b - (hace 9 años) Actualizamos dos misiones completadas al momento - Strider (rama-misiones-completadas)
+
+/*por ejemplo como aquel se puede ver los dos ultimos commits por lo tanto no es muy ordenado tener ambos commit porque recordemos que los commit sirven para cambios significativos no deberiamos hacerlos para cambios insignificantes, para este tipo de situaciones se usa git rebase squash*/
+
+/*lo primero es identificar la cantidad de commit que vamos a combinar(ya que para eso sirve esto para combinar o fusionar commits), entonces una vez ya identificados la cantidad de commits se pueden combinar usando el siguiente comando*/
+git rebase HEAD~<cantidad_de_commits_a_fusionar>
+
+/*en este caso serian dos*/
+git rebase -i HEAD~2
+
+
+pick f9ce891 se agrega otra mision completada
+s a66fc5e Se completa otra mision
+
+# Rebase 7fc235b..a66fc5e en 7fc235b (2 comandos)
+#
+# Commands:
+# p, pick <commit> = use commit
+# r, reword <commit> = use commit, but edit the commit message
+# e, edit <commit> = use commit, but stop for amending
+# s, squash <commit> = use commit, but meld into previous commit
+# f, fixup [-C | -c] <commit> = like "squash" but keep only the previous
+#                    commit's log message, unless -C is used, in which case
+#                    keep only this commit's message; -c is same as -C but
+#                    opens the editor
+# x, exec <command> = run command (the rest of the line) using shell
+# b, break = stop here (continue rebase later with 'git rebase --continue')
+# d, drop <commit> = remove commit
+# l, label <label> = label current HEAD with a name
+# t, reset <label> = reset HEAD to a label
+# m, merge [-C <commit> | -c <commit>] <label> [# <oneline>]
+#         create a merge commit using the original merge commit's
+#         message (or the oneline, if no original merge commit was
+#         specified); use -c <commit> to reword the commit message
+# u, update-ref <ref> = track a placeholder for the <ref> to be updated
+#                       to this position in the new commits. The <ref> is
+#                       updated at the end of the rebase
+#
+# These lines can be re-ordered; they are executed from top to bottom.
+#
+# Si eliminas una línea aquí EL COMMIT SE PERDERÁ.
+#
+# Como sea, si quieres borrar todo, el rebase será abortado.
+#
+
+
+
+/*en la parte inicial a al commit que queremos editar se tiene que por la palabra squash (el cual nos servirá para fusionar el comit y el anterior entonces (recordemos que este elije el commit que tiene la palabra sqush y el anterior por lo tanto en este caso al tenerlo asi*/
+pick f9ce891 se agrega otra mision completada
+s a66fc5e Se completa otra mision
+
+/*hace que se tome el ultimo y el penultimo*/
+/*al cerrar la ventana automaticamente se abrirá otra ventana para escribir el commit para el nuevo commit que se hizo gracias a la fusion con squash*/
+# Esta es una combinación de 2 commits.
+# Este es el mensaje del 1er commit:
+
+se agrega otra mision completada
+
+# Este es el mensaje del commit #2:
+
+Se completa otra mision
+
+# Por favor ingresa el mensaje del commit para tus cambios. Las
+#  líneas que comiencen con '#' serán ignoradas, y un mensaje
+#  vacío aborta el commit.
+#
+# Fecha:     Tue Feb 17 10:11:14 2026 -0600
+#
+# rebase interactivo en progreso; sobre 7fc235b
+# Los últimos comandos realizados (2 comandos realizados):
+#    pick f9ce891 se agrega otra mision completada
+#    squash a66fc5e Se completa otra mision
+# No quedan más comandos.
+# Estás aplicando un rebase de la rama 'master' sobre '7fc235b.
+#
+# Cambios a ser confirmados:
+#	modificados:     misiones-completadas.md
+#
+# Archivos sin seguimiento:
+#	__MACOSX/
+#
+
+
+ahora podemos cambiarlos por 
+
+Se agregan nuevas misiones completadas con exito
+
+# Por favor ingresa el mensaje del commit para tus cambios. Las
+#  líneas que comiencen con '#' serán ignoradas, y un mensaje
+#  vacío aborta el commit.
+#
+# Fecha:     Tue Feb 17 10:11:14 2026 -0600
+#
+# rebase interactivo en progreso; sobre 7fc235b
+# Los últimos comandos realizados (2 comandos realizados):
+#    pick f9ce891 se agrega otra mision completada
+#    squash a66fc5e Se completa otra mision
+# No quedan más comandos.
+# Estás aplicando un rebase de la rama 'master' sobre '7fc235b.
+#
+# Cambios a ser confirmados:
+#	modificados:     misiones-completadas.md
+#
+# Archivos sin seguimiento:
+#	__MACOSX/
+#
+
+
+/*y cerramos la ventana para pode confirmar la fusion de ambos commit y con un nuevo mensaje, y tambien pordemos ver el cambio y vemos ya se realizo la fusion de ambos commit (recordar solo ponerle squash al commit deseado y ese auntomaticamente tomará el anterior tambien)*/
+* 9ddcb91 - (hace 16 minutos) Se agregan nuevas misiones completadas con exito - rvguzman (HEAD -> master)
+* 7fc235b - (hace 9 años) Actualizamos dos misiones completadas al momento - Strider (rama-misiones-completadas)
+
+
+ES IMPORTANTE ACLARAR QUE ESTO HAY QUE USARLO CUANDO TENEMOS LOS CAMBIOS SOLO EN NUESTRA COMPUTADORA POR LO TANTO NO PARA NADA RECOMENDADO HACER ESTO CUANDO YA HICIMOS PUSH CON ANTERIORIDAD PORQUE PUEDEN GENERAR CONFLICTOS EN REPOSITORIOS COLABORATIVOS
+
+RECUERDA SOLO USARLO CUANDO NO HAYAMOS HECHO PUSH ANTES DE FUSIONAR LOS COMMITS
+
+MEJORAR LAS EXPLICACIONES Y LAS EJEMPLIFICACIONES PORFAVOR PARA HACER DE ESTOS APUNTES LOS MAS EXPLICAIVOS Y PROFESIONALES
+
+
