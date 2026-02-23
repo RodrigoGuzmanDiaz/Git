@@ -1,0 +1,102 @@
+/*el edit usando el rebase interactivo es para cuando de verdad queremos cambiar un commit ya sea agregar nuevos cabios el mensaje del commit, etc.*/
+/*es importante recalcar que es NO ES PARA NADA RECOMENDABLE USARLO EN REPOSITORIOS COLABORATIVOS PORQUE ESTO GENERA CONFLICTOS SI LOS CAMBIOS QUE SE PIENSAN MODIFICAR YA ESTA SUBIDOS */
+
+/*primero miramos el commit que queremos modificar con git log*/
+git log --oneline
+9ddcb91 (HEAD -> master) Se agregan nuevas misiones completadas con exito
+7fc235b (rama-misiones-completadas) Actualizamos dos misiones completadas al momento
+781f9e3 Agregamos el archivo de las misiones completadas
+158ba9e Se agrego a la liga: Volcán Negro
+300c014 Misiones nuevas agregadas
+
+/*y despues usamos el comando para el rebase interactivo, git rebase -i HEAD~<numero_de_commits>*/
+git rebase -i HEAD~5
+
+
+/*cuando ya se nos aparezca la ventana tenemos que poner edit en commit que queremos modificar y luego cerramos la ventana*/
+edit 300c014 Misiones nuevas agregadas
+pick 158ba9e Se agrego a la liga: Volcán Negro
+pick 781f9e3 Agregamos el archivo de las misiones completadas
+pick 7fc235b Actualizamos dos misiones completadas al momento
+pick 9ddcb91 Se agregan nuevas misiones completadas con exito
+
+# Rebase acea380..9ddcb91 en acea380 (5 comandos)
+#
+# Commands:
+# p, pick <commit> = use commit
+# r, reword <commit> = use commit, but edit the commit message
+# e, edit <commit> = use commit, but stop for amending
+# s, squash <commit> = use commit, but meld into previous commit
+# f, fixup [-C | -c] <commit> = like "squash" but keep only the previous
+#                    commit's log message, unless -C is used, in which case
+#                    keep only this commit's message; -c is same as -C but
+#                    opens the editor
+# x, exec <command> = run command (the rest of the line) using shell
+# b, break = stop here (continue rebase later with 'git rebase --continue')
+# d, drop <commit> = remove commit
+# l, label <label> = label current HEAD with a name
+# t, reset <label> = reset HEAD to a label
+# m, merge [-C <commit> | -c <commit>] <label> [# <oneline>]
+#         create a merge commit using the original merge commit's
+#         message (or the oneline, if no original merge commit was
+#         specified); use -c <commit> to reword the commit message
+# u, update-ref <ref> = track a placeholder for the <ref> to be updated
+#                       to this position in the new commits. The <ref> is
+#                       updated at the end of the rebase
+#
+# These lines can be re-ordered; they are executed from top to bottom.
+#
+# Si eliminas una línea aquí EL COMMIT SE PERDERÁ.
+#
+# Como sea, si quieres borrar todo, el rebase será abortado.
+#
+
+
+
+/*ahora nos aparece este mensaje que nos sirve como guia*/
+git rebase -i HEAD~5
+Detenido en 300c014...  Misiones nuevas agregadas
+Puedes enmendar el commit ahora, con
+
+  git commit --amend 
+
+Una vez que estés satisfecho con los cambios, ejecuta
+
+  git rebase --continue
+
+
+/*ahora vamos a agregar cambios como por ejemplo agregar un archivo o crearlo, pero en mi caso lo voy a crear*/
+/*para esto creé un archivo llamado "misiones-pequeñas.md" y tiene este contenido*/
+Este archivo tiene un registro que las misiones pequeñas completadas
+1. Rescatar un gato.
+2. interrogar al Joker
+
+/*ahora tenemos que crear el commit, en mi caso usarpe el commit amend */
+git add misiones-pequeñas.md
+
+git commit --amend -m "se agrega un nuevo archivo de misiones pequeñas"
+[HEAD desacoplado 694d8d6] se agrega un nuevo archivo de misiones pequeñas
+ Author: Strider <fernando.herrera85@gmail.com>
+ Date: Fri Jun 23 15:47:03 2017 -0600
+ 2 files changed, 4 insertions(+)
+ create mode 100644 misiones-pequenas.md
+
+
+/*ahora usamos el comando para continuar con el rebase*/
+git rebase --continue
+Rebase aplicado satisfactoriamente y actualizado refs/heads/master.
+
+/*ahora al ver los commit vemos que todo cambiaron el hash de atras en adelante, de atras en adelante todo los hash cambiaron por lo tanto esto no es para nada recomendado usarlo en repositorios colaborativos*/
+
+/*ahora vemos que todo cambio*/
+git log --oneline
+11a4449 (HEAD -> master) Se agregan nuevas misiones completadas con exito
+b4cb8b0 Actualizamos dos misiones completadas al momento
+bd3397b Agregamos el archivo de las misiones completadas
+f19d852 Se agrego a la liga: Volcán Negro
+694d8d6 se agrega un nuevo archivo de misiones pequeñas
+acea380 Actualización de las misiones
+
+
+
+/*MEJORAR EXPLICACION Y EJEMPLIFICACION PORFAVOR PARA HACERLO PARA PROFESIONAL Y ENTENDIBLE PORFAVOR*/

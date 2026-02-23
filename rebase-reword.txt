@@ -1,0 +1,142 @@
+para el caso del git rebase con la variante de reword sirve exclusivamente para el cambio de mensaje de commit, es imrpotante decir es que mejor no hacer el mensaje de commit porque al hacerlo en repositorios colaborativos esto puede generar conflictos, por lo tanto es recomendable usarlo cuando nuestros cambios aun no estan publicados
+
+primero usamos el comando de git rebase -i HEAD~<numero_de_commits>
+
+pro ejemplo si queremos hacerlo con 3 commit seria algo asi*/
+git rebase -i HEAD~3
+
+en el menú 
+podemos poner la palabra reword a los committs que queremos, o simpremente podemos poner r
+
+pick 158ba9e Se agrego a la liga: Volcán Negro
+pick 781f9e3 Agregamos el archivo de las misiones completadas
+pick 7fc235b Actualizamos dos misiones completadas al momento
+
+# Rebase 300c014..7fc235b en 300c014 (3 comandos)
+#
+# Commands:
+# p, pick <commit> = use commit
+# r, reword <commit> = use commit, but edit the commit message
+# e, edit <commit> = use commit, but stop for amending
+# s, squash <commit> = use commit, but meld into previous commit
+# f, fixup [-C | -c] <commit> = like "squash" but keep only the previous
+#                    commit's log message, unless -C is used, in which case
+#                    keep only this commit's message; -c is same as -C but
+#                    opens the editor
+# x, exec <command> = run command (the rest of the line) using shell
+# b, break = stop here (continue rebase later with 'git rebase --continue')
+# d, drop <commit> = remove commit
+# l, label <label> = label current HEAD with a name
+# t, reset <label> = reset HEAD to a label
+# m, merge [-C <commit> | -c <commit>] <label> [# <oneline>]
+#         create a merge commit using the original merge commit's
+#         message (or the oneline, if no original merge commit was
+#         specified); use -c <commit> to reword the commit message
+# u, update-ref <ref> = track a placeholder for the <ref> to be updated
+#                       to this position in the new commits. The <ref> is
+#                       updated at the end of the rebase
+#
+# These lines can be re-ordered; they are executed from top to bottom.
+#
+# Si eliminas una línea aquí EL COMMIT SE PERDERÁ.
+#
+# Como sea, si quieres borrar todo, el rebase será abortado.
+#
+
+
+/*ahora vamos a cambiar los commit a lo que queremos cambiar el mensaje*/
+pick 158ba9e Se agrego a la liga: Volcán Negro
+r 781f9e3 Agregamos el archivo de las misiones completadas
+r 7fc235b Actualizamos dos misiones completadas al momento
+
+# Rebase 300c014..7fc235b en 300c014 (3 comandos)
+#
+# Commands:
+# p, pick <commit> = use commit
+# r, reword <commit> = use commit, but edit the commit message
+# e, edit <commit> = use commit, but stop for amending
+# s, squash <commit> = use commit, but meld into previous commit
+# f, fixup [-C | -c] <commit> = like "squash" but keep only the previous
+#                    commit's log message, unless -C is used, in which case
+#                    keep only this commit's message; -c is same as -C but
+#                    opens the editor
+# x, exec <command> = run command (the rest of the line) using shell
+# b, break = stop here (continue rebase later with 'git rebase --continue')
+# d, drop <commit> = remove commit
+# l, label <label> = label current HEAD with a name
+# t, reset <label> = reset HEAD to a label
+# m, merge [-C <commit> | -c <commit>] <label> [# <oneline>]
+#         create a merge commit using the original merge commit's
+#         message (or the oneline, if no original merge commit was
+#         specified); use -c <commit> to reword the commit message
+# u, update-ref <ref> = track a placeholder for the <ref> to be updated
+#                       to this position in the new commits. The <ref> is
+#                       updated at the end of the rebase
+#
+# These lines can be re-ordered; they are executed from top to bottom.
+#
+# Si eliminas una línea aquí EL COMMIT SE PERDERÁ.
+#
+# Como sea, si quieres borrar todo, el rebase será abortado.
+#
+
+
+/*ahora al cerrar la ventan se va a aparecer otra ventanita qu emostrará eel commit y luego tendremos la oportunidad de corregirlo con un nuevo mensaje*/
+
+Se agrega el cambio de las misiones completadas 1
+
+# Por favor ingresa el mensaje del commit para tus cambios. Las
+#  líneas que comiencen con '#' serán ignoradas, y un mensaje
+#  vacío aborta el commit.
+#
+# Autor:     Strider <fernando.herrera85@gmail.com>
+# Fecha:     Fri Jun 23 15:44:11 2017 -0600
+#
+# rebase interactivo en progreso; sobre 300c014
+# Los últimos comandos realizados (2 comandos realizados):
+#    pick 158ba9e Se agrego a la liga: Volcán Negro
+#    reword 781f9e3 Agregamos el archivo de las misiones completadas
+# Siguiente comando a realizar (1 comando restante):
+#    reword 7fc235b Actualizamos dos misiones completadas al momento
+# Estás editando un commit durante un rebase.
+#
+# Cambios a ser confirmados:
+#	nuevos archivos: misiones-completadas.md
+#
+# Archivos sin seguimiento:
+#	__MACOSX/
+#
+
+
+
+Se agrega el cambio del mensaje de commit 2
+
+# Por favor ingresa el mensaje del commit para tus cambios. Las
+#  líneas que comiencen con '#' serán ignoradas, y un mensaje
+#  vacío aborta el commit.
+#
+# Autor:     Strider <fernando.herrera85@gmail.com>
+# Fecha:     Fri Jun 23 15:44:41 2017 -0600
+#
+# rebase interactivo en progreso; sobre 300c014
+# Los últimos comandos realizados (3 comandos realizados):
+#    reword 781f9e3 Agregamos el archivo de las misiones completadas
+#    reword 7fc235b Actualizamos dos misiones completadas al momento
+# No quedan más comandos.
+# Estás editando un commit durante un rebase.
+#
+# Cambios a ser confirmados:
+#	modificados:     misiones-completadas.md
+#
+# Archivos sin seguimiento:
+#	__MACOSX/
+#
+
+
+/*al completar el proceso los mensajes de los commit habrá cambiado */
+
+* d259053 - (hace 9 años) Se agrega el cambio del mensaje de commit 2 - Strider (HEAD)
+* 128eeb0 - (hace 9 años) Se agrega el cambio de las misiones completadas 1 - Strider
+| * 9ddcb91 - (hace 6 días) Se agregan nuevas misiones completadas con exito - rvguzman (master)
+
+Mejorar la explicacion y la ejemplificacion para hacer que una persona parenda con solo leerlo y entrendible porfavor,
