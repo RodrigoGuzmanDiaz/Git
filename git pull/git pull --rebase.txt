@@ -1,0 +1,30 @@
+Por qué priorizar git pull --rebase sobre git pull
+El problema principal de usar el git pull tradicional es que ejecuta un git fetch seguido de un git merge. Si tú y otro desarrollador están trabajando sobre la misma base y él sube sus cambios primero, tu rama local y la remota habrán avanzado por caminos separados. Al hacer git pull, Git une ambos caminos creando automáticamente un "commit de fusión" (merge commit). Esto ensucia el historial del proyecto con commits innecesarios, haciéndolo difícil de leer y rastrear.
+
+Por el contrario, git pull --rebase ejecuta un git fetch seguido de un rebase. Su funcionamiento es el siguiente:
+
+Toma tus commits locales y los pone a un lado temporalmente.
+
+Actualiza tu rama local con los últimos cambios del servidor remoto.
+
+Vuelve a aplicar (replays) tus commits locales, uno por uno, justo por encima de los nuevos cambios descargados.
+
+El resultado: Un historial de commits completamente lineal, directo y limpio, sin commits de fusión adicionales que entorpezcan la navegación.
+
+Qué hacer cuando ocurre un conflicto usando --rebase
+Los conflictos ocurren cuando Git intenta reaplicar tus commits sobre los cambios remotos y encuentra modificaciones incompatibles en las mismas líneas de código. Durante un rebase, el proceso se detendrá exactamente en el commit que causa el problema y te avisará.
+
+Tienes dos caminos a seguir:
+
+Opción A: Resolver el conflicto y continuar (Recomendado)
+
+Abre los archivos indicados por Git y resuelve los conflictos manualmente en tu editor de código.
+
+Ejecuta git add <archivo> para marcar los conflictos como resueltos.
+
+Ejecuta git rebase --continue para que Git siga aplicando el resto de tus commits.
+Nota importante: En este proceso NO debes ejecutar git commit.
+
+Opción B: Abortar la operación (Vía de escape)
+Si el conflicto es demasiado complejo, te confundes o prefieres manejarlo de otra forma, ejecuta git rebase --abort.
+Esto cancela el rebase por completo y devuelve tu repositorio al estado exacto en el que estaba antes de que intentaras hacer el pull. Desde ahí, puedes optar por un git pull normal para manejar la fusión de la manera tradicional.
