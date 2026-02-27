@@ -1,0 +1,25 @@
+/*lo que hace el git push es subir el codigo que tenemos para un repsitorio remoto y mantener actualizado el contenido local y el contenido remoto*/
+/*previo a esto tenemos en enlazalo con git remote y eso */
+MEJORAR EJEMPLIFICACION Y EXPLICACION PORFAVOR SIENTO QUE ME QUEDÉ CORTO CON LAS EXPLICACIONES PORFAVOR AYUDAME CON ESTO PARA HACER DE ESTOS APUNTES UN CURSO DE GIT DEFINITIVO
+
+
+
+-----Push en tags-----
+/*el siguiente comando nos ayuda a que si tenemos commit identificados por tags (que regularmente se utiliza para documentar el versionamiento del codigo, tabien se pueden subir a github ya que github tambien tiene su propio apartado de tags) hay que aclarar que lso tags locales no se suben con un simple git push para eso se usa una variante de git push*/
+git push --tags
+
+/*ejemplo primero se vio con git tag si hay tag en nuestro proyecto de git y ahora se procede a subirlo*/
+git push --tags
+Enumerando objetos: 3, listo.
+Contando objetos: 100% (3/3), listo.
+Compresión delta usando hasta 4 hilos
+Comprimiendo objetos: 100% (3/3), listo.
+Escribiendo objetos: 100% (3/3), 456 bytes | 456.00 KiB/s, listo.
+Total 3 (delta 0), reusados 0 (delta 0), pack-reusados 0
+To https://github.com/RodrigoGuzmanDiaz/liga-justicia.git
+ * [new tag]         v0.1.0 -> v0.1.0
+ * [new tag]         v1.0.0 -> v1.0.0
+ * [new tag]         v2.0.0 -> v2.0.0
+
+
+/*adicionando informacion en el apartado de tag de github podemos descargar el codigo correcpodiente a ese tag como si fuera para ver una version del codigo, tambien podemos descargarlo con zip, tar.gz y ademas se puede ver el commit al que se le puso ese tag*/
