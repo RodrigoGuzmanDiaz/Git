@@ -1,0 +1,11 @@
+por ejemplo quiero revertir la version de un archivo de un commit especifico hago esto
+El comando equivalente a git checkout <hash_commit> <nombre_archivo> es:
+Bash
+git restore --source=<hash_commit> <nombre_archivo>
+Detalles importantes sobre cómo funciona:
+
+Directorio de trabajo (Working Tree): El comando anterior tomará el archivo de ese commit específico y lo pondrá en tu directorio de trabajo actual.
+
+Área de preparación (Staging): Por defecto, este cambio no se añade al área de preparación. El archivo quedará marcado como modificado y tendrás que hacer un git add <nombre_archivo> si quieres incluirlo en tu próximo commit.
+
+

@@ -1,0 +1,31 @@
+/*parae esta practica, vamos a ver cual es diferencia de solo usar git fetch en lugar de usar git pull, para esto tenemos que entender que git pull es basicamente(git fetch + git merge) el proceso es simple se descargan los cambios del repositorio remoto con git fetch, y luego se combinan con nuestro codigo local con el git merge ese seria en esencia el flujo de git pull.
+ahora solo usando git fetch se puede apreciar que solo se es descargar los cambios del repositorio remoto pero no implementarlos a nuestro codigo*/
+/*para esta practica vamos a crear un archivo, le vamos a cambiar el nombre y lo vamos a eliminar en github para ver la diferencia*/
+
+/*despues de crear, cambiarle el nombre, y eliminarlo desde github (esto es solo ejemplificacion para el uso de git fetch), vamos a usar el git fetch en nuetro repositorio local, al usarlo nos damos cuenta que se descargaron los cambios pero no hay cambios en nuestro repositorio local*/
+git fetch
+remote: Enumerating objects: 10, done.
+remote: Counting objects: 100% (10/10), done.
+remote: Compressing objects: 100% (8/8), done.
+Desempaquetando objetos: 100% (8/8), 3.02 KiB | 1.01 MiB/s, listo.
+remote: Total 8 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+Desde https://github.com/RodrigoGuzmanDiaz/liga-justicia
+   88fcd9a..807a110  main       -> origin/main
+
+
+/*ahora al ver el hisotiral de commits podemos ver algo interesante*/
+/*esto se logra gracias a este alias que nos permite ver esto, porque si usamos el git log --oneline este no lo mostraria*/
+/*para visualizar esto usamos un alias de git que no permite ver los cambios que se descargaron desde github 
+git config --global alias.lg "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
+*/
+git lg
+* 807a110 - (hace 4 minutos) Delete historia/flash.md - RodrigoGD (origin/main, origin/HEAD)
+* 5fc7bf4 - (hace 5 minutos) Renombramos el nombre del archivo de historia-flash.md a flash.md - RodrigoGD
+* 9dbee71 - (hace 5 minutos) se crea el archivo historia-flash.md - RodrigoGD
+* 88fcd9a - (hace 4 semanas) se agrega nuevo commit - rvguzman (HEAD -> main, tag: v4.0.0, tag: v3.0.0)
+
+/*recordemos que el HEAD es el puntero que nos indica en punto de la historia nos encontramos actualmente, ahora vemos que los punteros que vienen de github son origin/main y origin/HEAD nos indican que hay mas o menos 3 commit por delante de nosotros*/
+
+/*muchas personas suelen usar el git fetch antes de usar el git pull pero ya depende de cada uno*/
+/*esto es util para ver que no hay problema al momento de usar git pull*/
+/*MEJORAR EXPLICACION Y EJEMPLIFICACION PORFAVOR PARA HACERLO MÀS PROFESIONAL Y ENTENDIBLE PORFAVOR, PARA QUE UNA PERSONA QUE LEA ESTOS APUNTES PUEDA ENTENDER Y APRENDER AL MISMO TIEMPO*/
