@@ -1,0 +1,23 @@
+/*Ahora veremos como seria la revision de cambios de nuestros compañeros recordemos que estamos siguiendo el flujo de trabajo de feature branch mediante pull request*/
+
+/*aqui suponemos que un compañero siguio el flujo que habiamos hablado antes*/
+
+/*en este caso supongamos que un compañero subio cambios o esta acutlaizando su rama esto es lo que tenemos que hacer*/
+
+/*lo primero que tenemos que hacer es actualizar nuestro repositorio local usando el comando de git pull --all*/
+git pull --all
+/*o tambien se puede usar este comando*/
+git fetch
+
+/*ahora vemos la ramas dispnibles tanto en nuestro repositorio local y repositorio remoto*/
+git branch -a 
+/*este comando muestra absolutamente todas las ramas*/
+/*ahora gracias a este comando podemos saber en que rama esta trabajando nuestro compañero*/
+git switch rama-compañero
+
+/*y hacer un git pull para siempre estar actualizados a esta rama*/
+git pull
+
+
+QUIERO QUE HAGAS MAS PROFESIONAL ESTOS APUNTES HAZLOS MAS ENTENDIBLES PARA QUE UNA PERSONA QUE NO ENTIENDA ESTO AL LEER ESTOS NUEVOS APUNTES QUE VAS A GENERAR PUEDA COMPRENDER Y APRENDER SOBRE ESTO
+TAMBIEN QUIERO QUE MEJORES LAS EXPLICACIONES Y LOS EJEMPLO PORFAVOR HAZ LAS MEJORES EXPLICACIONES Y LOS MEJORES EJEMPLO QUE SE TE OCURRAN PARA MEJORAR ESTOS APUNTES QUIERO QUE SEAS UN EXPERTO EN EXPLICACION DE CURSO DE GIT Y GITHUB

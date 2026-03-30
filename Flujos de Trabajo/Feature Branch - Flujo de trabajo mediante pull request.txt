@@ -1,0 +1,67 @@
+/*Como primer punto vamos a simular un flujo de trabajo usando el feature branch mediante pull request*/
+/*primero nos aseguramos que estamos en la rama principal (ya que en esta seràn todas las fusiones de todas las ramas de funcionalidades que esten trabajando nuestros compañeros) por lo tanto tenemos que asegurarnos que este en esta rama*/
+/*basta con usar el git branch*/
+git branch
+* main
+
+/*aqui nos aseguramos en la rama principal, posteriormente tenemos que asegurarnos tener la rama principal actualizada usando git pull*/
+git pull
+Ya está actualizado.
+/*Al usar este comando nos mantenemos acutlaizados ya sea que la rama principal ya tenga fusionada funcionalidades de ramas de otros compañeros, y si en dado caso hayan cambios ya estaremos actualizados*/
+/*ahora lo que hacemos es crear una nueva rama a partir de la rama principal actualizada, lo podemos crear usando el siguiente comando it switch -c <nombre_rama>*/
+git switch -c rama-funcionalidad
+
+
+/*Ahora hacemos el flujo de siempre, usando git add, git commit, etc.*/
+git add . (recordemos que es mala practica usar el git add .)
+git commit -m "Nueva funcionalidad implementada"
+
+/*Ahora podemos subir los cambios usando el git push origin <rama_a_subir>*/
+git push origin rama-funcionalidad 
+Enumerando objetos: 4, listo.
+Contando objetos: 100% (4/4), listo.
+Compresión delta usando hasta 4 hilos
+Comprimiendo objetos: 100% (3/3), listo.
+Escribiendo objetos: 100% (3/3), 414 bytes | 414.00 KiB/s, listo.
+Total 3 (delta 0), reusados 0 (delta 0), pack-reusados 0
+remote: 
+remote: Create a pull request for 'rama-funcionalidad' on GitHub by visiting:
+remote:      https://github.com/RodrigoGuzmanDiaz/avengers/pull/new/rama-funcionalidad
+remote: 
+To https://github.com/RodrigoGuzmanDiaz/avengers.git
+ * [new branch]      rama-funcionalidad -> rama-funcionalidad
+
+
+
+/*en el mensaje nos damos cuenta que se creò un nueva rama, ahora sigue ir a github y hacer el pull request de nuestra rama (que acabamos de subir) a la rama principal o a la rama que deseemos*/
+
+/*Al estar en github aparecerà un boton verde que dirà "Compare & pull request"*/
+/*Ahora vamos a Crear el pull request agregando un titulo y una descripcion al pull request*/
+/*Por ultimo damos click al botòn "Create pull request"*/
+/*ahora en este proceso otras persona encargadas de los pull request podràn revisar el codigo y discutir acerca de el decidiendo si se acepta o se rechaza*/
+
+/*Ahora supongamos que si se aceptò el pull request ahora tenemos que regresar a la rama main a actualizarnos*/
+git switch main
+git pull
+remote: Enumerating objects: 1, done.
+remote: Counting objects: 100% (1/1), done.
+remote: Total 1 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+Desempaquetando objetos: 100% (1/1), 919 bytes | 919.00 KiB/s, listo.
+Desde https://github.com/RodrigoGuzmanDiaz/avengers
+   ad31ad2..42b2a1c  main       -> origin/main
+Actualizando ad31ad2..42b2a1c
+Fast-forward
+ miembros-recientes.md | 3 +++
+ 1 file changed, 3 insertions(+)
+ create mode 100644 miembros-recientes.md
+
+Recodemos que despues del merge tenemos que eliminar la rama 
+git branch -d rama-funcionalidad
+
+ASI CONCETUVIAMENTE CUANDO QUEREMOS IMPLEMENTAR UNA NUEVA FUNCIONALIDAD PRIMERO TENEMOS QUE RECORDAR USAR EL GIT PULL EN LA RAMA PRINCIPAL Y LUEGO CREAMOS UNA NUEVA RAMA IMPLEMENTAMOS FUNCIONLAIDAD, SUBIMOS CAMBIOS, HACEMOS EL PULL REQUEST, Y SI SE ACEPTA VOLVEMOS A LA RAMA PRINCIPAL Y NOS VOLVEMOS A ACTUALIZAR (ESTE SERIA EL FLUJO)
+
+
+qUIERO QUE MEJORES LOS APUNTES PORFAVOR QUE LOS HAGAS MAS PROFESIONALES Y ENTENDIBLES PARA QUE UNA PERSONA QUE LEA ESTO PUEDA ENTENDER COMO ES EL FLUJO DE TRABAJO DEL FEATURE BRANCH MEDIANTE PULL REQUEST PARA TRABAJAR EN EMPRESAS POR EJEMPLO
+DA TU MEJOR ESFUERZO MEJORANDO ESTOS APUNTES
+QUIERO QUE HAGAS MAS PROFESIONAL ESTOS APUNTES HAZLOS MAS ENTENDIBLES PARA QUE UNA PERSONA QUE NO ENTIENDA ESTO AL LEER ESTOS NUEVOS APUNTES QUE VAS A GENERAR PUEDA COMPRENDER Y APRENDER SOBRE ESTO
+TAMBIEN QUIERO QUE MEJORES LAS EXPLICACIONES Y LOS EJEMPLO PORFAVOR HAZ LAS MEJORES EXPLICACIONES Y LOS MEJORES EJEMPLO QUE SE TE OCURRAN PARA MEJORAR ESTOS APUNTES QUIERO QUE SEAS UN EXPERTO EN EXPLICACION DE CURSO DE GIT

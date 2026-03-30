@@ -1,0 +1,75 @@
+/*aqui por ejemplo tenemos que limpiar las referendcias que tenemos de ramas que ya no utilizamos o que ya cumplieron con su ciclo, recordemos que el proposito de uan rama es implementar una funcionalidad sin estar programando en la rama principal, por lo tanto al ver que las funcionalidad que se hicieron merge con la rama principal podemos eliminar la rama sin ningun tipo de problema porque dicha rama ta compliò su ciclo*/
+
+/*por ejemplo acabamos de subir cambios a una rama*/
+git push origin rama1 
+Enumerando objetos: 5, listo.
+Contando objetos: 100% (5/5), listo.
+Compresión delta usando hasta 4 hilos
+Comprimiendo objetos: 100% (3/3), listo.
+Escribiendo objetos: 100% (3/3), 334 bytes | 334.00 KiB/s, listo.
+Total 3 (delta 2), reusados 0 (delta 0), pack-reusados 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+remote: 
+remote: Create a pull request for 'rama1' on GitHub by visiting:
+remote:      https://github.com/RodrigoGuzmanDiaz/avengers/pull/new/rama1
+remote: 
+To https://github.com/RodrigoGuzmanDiaz/avengers.git
+ * [new branch]      rama1 -> rama1
+
+/*en este punto hicimos el pull request y fue aceptado para hacer el merge, despues de esto en github aparece un boton que dice "Delete branch"*/
+/*el mensaje es asì*/
+Pull request successfully merged and closed
+You're all set — the rama1 branch can be safely deleted.
+/*al dale el boton de "Delete branch", se elimina la referencia a esa rama desde github (pero no en nuestro repositorio local)*/
+
+/*supongamos que tenemos mas 2 ramas asi que github eliminò su referencia pero esa referencia aun se encuentra en nuestro repositorio local por lo tanto tenemos que limpiar eso de manera local*/
+
+/*primero descargamos la ramas remotas que se encuentran en el repositorio de github, usando ya sea git fetch o git pull --all*/
+git pull --all
+Desde https://github.com/RodrigoGuzmanDiaz/avengers
+ * [nueva rama]      rama1          -> origin/orama1
+   b2e7ebc..42b2a1c  rama2       -> origin/rama2
+Ya está actualizado.
+
+/*una vez ya tenemos las referencias tenemos y que ya confimamos que esas ramas ya no se encuentra en github podemos continuar con la limipieza de las referencias de ramas remotas que tenemos en nuestro repositorio local*/
+/*primero vemos las ramas que tenemos*/
+git branch -a
+* main
+  rama1
+  rama2
+  remotes/origin/main
+  remotes/origin/rama1
+  remotes/origin/rama2
+
+/*ahora tenemos que eliminar la referncias locales y tambien las remotas*/
+/*primero vamos por las locales, las eliminamos usando el comando git branch -d rama-a-eliminar*/
+git branch -d rama1
+Eliminada la rama rama1 (era d43e289).
+
+git branch -d rama2 
+Eliminada la rama rama2 (era df99aee).
+
+/*ahora volvemos a ver las ramas que tenemos*/
+git branch -a
+* main
+  remotes/origin/main
+  remotes/origin/rama1
+  remotes/origin/rama2
+
+
+/*segundo vamos por las remotas, las eliminamos usando el comando git remote prune origin*/
+git remote prune origin
+Recortando origin
+URL: https://github.com/RodrigoGuzmanDiaz/avengers.git
+ * [recortada] origin/rama1
+ * [recortada] origin/rama2
+
+/*ahora al ver las ramas que tenemos, vemos que se eliminaron todas las referencias de ramas remotas que ya no se encontraban en github*/
+git branch -a
+* main
+  remotes/origin/main
+
+/*ahora si nuestro espacio de trabajo es limpio de ramas que ya no se usan y que ya cumplieron con su ciclo*/
+
+QUIERO QUE HAGAS MAS PROFESIONAL ESTOS APUNTES HAZLOS MAS ENTENDIBLES PARA QUE UNA PERSONA QUE NO ENTIENDA ESTO AL LEER ESTOS NUEVOS APUNTES QUE VAS A GENERAR PUEDA COMPRENDER Y APRENDER SOBRE ESTO
+TAMBIEN QUIERO QUE MEJORES LAS EXPLICACIONES Y LOS EJEMPLO PORFAVOR HAZ LAS MEJORES EXPLICACIONES Y LOS MEJORES EJEMPLO QUE SE TE OCURRAN PARA MEJORAR ESTOS APUNTES QUIERO QUE SEAS UN EXPERTO EN EXPLICACION DE CURSO DE GIT Y GITHUB

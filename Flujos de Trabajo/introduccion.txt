@@ -1,0 +1,20 @@
+primero vamos a ver como es el flujo de trabajo en base a forks por ejemplo, 
+aqui en este caso cada persona tiene que hacer un fork del reposiotorio central
+cada persona sube sus cambios y luego hacer un pull request desde su fork al repositorio central, esto si bien es util para compañeros que queremos que trabajen aislados del equipo o cuando tenemos compañeros que no confiamos mucho en ellos este flujo de trabajo hace el el flujo sea demasiado lento, Pero esto en un equipo de trabajo por ejemplo que nos encontramos en una misma oficina o que todos con confiables por asi decirlo seria un poco lento y engorroso.
+
+Ahora es muy comùn que en una empresa el flujo para hacer mas dinamico el flujo de trabajo lo ideal es usar algo que se llama el "FEATURE BRANCH" esto para que cada programador o desarrollador pueda trabajar en sus respectivas funcionalidades para posiblemente seràn incluidas a la rama principal (main) sin estar trabajando todos en una misma rama (que ya sabemos que esto genera muchos conflictos), para poder revisar el trabajo de otros compañeros podemos verlo gracias a una serie de comando como:
+git fetch (esto es para descargar las ramas del repositorio remoto)
+git branch -a (esto es para verlas todas las ramas que se encuentra en el repositorio locales y remotas)
+git switch rama-a-analizar (esto para cambiarnos a la rama de otra persona)
+ahora si nosotros trabajamos de esta manera cualquier compañero puede realizar un push a github para que nuestro repositorio estè actualizado
+existen varias formas de realizar esto mediente el merge por ejemplo:
+git switch main
+git merge funcionalidad-rama
+git push
+De esta manera podemos implementar lo que se trabajo en dichas ramas para que la rama principal este actualizado con los cambios de otras ramas
+Si bien esto es valido hay otra manera que es mas 
+Existe otra manera de trabajarlo pero utilizando los pull request de esta manera el equipo de trabajo se entera y puede dicutir los cambios antes de unirlos al master usando el comando para subir los cambios a la rama:
+git push origin funcaionalidad-rama
+
+AQUI ME GUSTARIA QUE HAGAS MAS PROFESIONAL ESTOS APUNTES SOBRE EL FLUJO DE TRABAJO Y ME GUSTARIA QUE DEJES RECOMENDACIONES Y CONSEJOS PROFESIONALES PARA TRABAJAR DE LA MEJOR MANERA
+
