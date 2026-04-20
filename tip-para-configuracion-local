@@ -1,0 +1,65 @@
+----------git config --local user.--------------
+cuando uno usa el 
+git config --local user.email "otro-correo"
+
+lo que pasa que esto no sincriniza las configuraciones de inicio de sesion 
+
+por lo tanto hay que hacer lo siguiente:
+1. Genera un Token en tu cuenta personal de GitHub
+Ve a GitHub.com y asegúrate de haber iniciado sesión con tu cuenta personal (RodrigoGuzmanDiaz).
+
+Ve a Settings (Configuración) > Developer settings (al final del menú izquierdo).
+
+Selecciona Personal access tokens > Tokens (classic).
+
+Haz clic en Generate new token (classic).
+
+Ponle un nombre para que lo recuerdes (ej. Obsidian Sync).
+
+En "Expiration", puedes ponerle "No expiration" (para no tener que hacer esto de nuevo, aunque GitHub te advertirá que es menos seguro) o ponerle 1 año.
+
+En la lista de permisos (Scopes), marca únicamente la casilla que dice repo.
+
+Dale a generar y copia el token (es una cadena larga de letras y números que empieza con ghp_). No lo pierdas porque no lo volverás a ver.
+
+2. Actualiza la URL remota en tu terminal
+Ahora vamos a decirle a Git que, para esta carpeta en específico, use ese token para iniciar sesión. Abre tu terminal (MINGW64) donde estabas y ejecuta este comando, reemplazando <TU_TOKEN> con el código que acabas de copiar:
+git remote set-url origin https://<TU_TOKEN>@github.com/RodrigoGuzmanDiaz/Obsidian-apuntes.git
+
+Es una excelente decisión separar tus proyectos personales de los de la universidad. Es un problema súper común: cuando te gradúas o dejas de usar la cuenta académica, pierdes acceso a todo lo que tenías vinculado ahí.
+
+El problema que estás viendo (Repository not found) ocurre por una confusión muy habitual sobre cómo funciona Git:
+
+Los comandos que ejecutaste (git config --local user.name y user.email) sirven para ponerle la "etiqueta de autor" a tus commits. Sin embargo, esos comandos no manejan el inicio de sesión. Tu computadora (específicamente el Administrador de Credenciales de Windows) está intentando conectarse a GitHub usando tu cuenta de la universidad de forma automática por detrás. Como tu cuenta de la universidad no tiene permisos sobre el repositorio RodrigoGuzmanDiaz/Obsidian-apuntes, GitHub te dice que "no lo encuentra".
+
+Para solucionar esto de forma local en esta carpeta y no arruinar la configuración de tus otros proyectos universitarios, la forma más rápida y segura es usar un Personal Access Token (PAT) directamente en la URL de este proyecto.
+
+Aquí tienes los pasos exactos:
+
+1. Genera un Token en tu cuenta personal de GitHub
+Ve a GitHub.com y asegúrate de haber iniciado sesión con tu cuenta personal (RodrigoGuzmanDiaz).
+
+Ve a Settings (Configuración) > Developer settings (al final del menú izquierdo).
+
+Selecciona Personal access tokens > Tokens (classic).
+
+Haz clic en Generate new token (classic).
+
+Ponle un nombre para que lo recuerdes (ej. Obsidian Sync).
+
+En "Expiration", puedes ponerle "No expiration" (para no tener que hacer esto de nuevo, aunque GitHub te advertirá que es menos seguro) o ponerle 1 año.
+
+En la lista de permisos (Scopes), marca únicamente la casilla que dice repo.
+
+Dale a generar y copia el token (es una cadena larga de letras y números que empieza con ghp_). No lo pierdas porque no lo volverás a ver.
+
+2. Actualiza la URL remota en tu terminal
+Ahora vamos a decirle a Git que, para esta carpeta en específico, use ese token para iniciar sesión. Abre tu terminal (MINGW64) donde estabas y ejecuta este comando, reemplazando <TU_TOKEN> con el código que acabas de copiar:
+
+Bash
+git remote set-url origin https://<TU_TOKEN>@github.com/RodrigoGuzmanDiaz/Obsidian-apuntes.git
+(Ojo: quita los signos < > cuando pegues el token).
+
+3. Sube tus archivos
+Vuelve a intentar el comando para subir tus apuntes:
+git push -u origin main
